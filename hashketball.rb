@@ -129,7 +129,7 @@ def num_points_scored(player_info)
     team.each do |team_key, team_data|
       next if team_key != :players
       
-      data.each do |player|
+      team_data.each do |player|
         return player[:points] if player[:player_name] == player_info
       end
     end
@@ -153,6 +153,7 @@ def team_colors(team_name)
     return game_hash[position][:colors] if team[:team_name] == team_name
   end
 end
+
 
 def team_names
   game_hash.collect do |position, team|
@@ -184,6 +185,7 @@ def player_stats(player_info)
 
       game_hash[position][team_key].each do |player|
         next unless player[:player_name] == player_info
+        
 
         new_hash = player.delete_if do |player_key, player_value|
           player_key == :player_name
